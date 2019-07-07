@@ -1,0 +1,7 @@
+C:\Users\Shurka\Desktop\RenameByTags\ConsoleApp1\bin\Debug\ConsoleApp1.exe.config
+C:\Users\Shurka\Desktop\RenameByTags\ConsoleApp1\bin\Debug\ConsoleApp1.exe
+C:\Users\Shurka\Desktop\RenameByTags\ConsoleApp1\bin\Debug\ConsoleApp1.pdb
+C:\Users\Shurka\Desktop\RenameByTags\ConsoleApp1\obj\Debug\ConsoleApp1.csproj.CoreCompileInputs.cache
+C:\Users\Shurka\Desktop\RenameByTags\ConsoleApp1\obj\Debug\ConsoleApp1.exe
+C:\Users\Shurka\Desktop\RenameByTags\ConsoleApp1\obj\Debug\ConsoleApp1.pdb
+C:\Users\Shurka\Desktop\RenameByTags\ConsoleApp1\obj\Debug\ConsoleApp1.csprojAssemblyReference.cache
