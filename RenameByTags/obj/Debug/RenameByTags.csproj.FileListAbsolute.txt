@@ -9,3 +9,14 @@ C:\Users\Shurka\Desktop\RenameByTags\RenameByTags\obj\Debug\RenameByTags.csproj.
 C:\Users\Shurka\Desktop\RenameByTags\RenameByTags\obj\Debug\RenameByTags.csproj.CopyComplete
 C:\Users\Shurka\Desktop\RenameByTags\RenameByTags\obj\Debug\RenameByTags.exe
 C:\Users\Shurka\Desktop\RenameByTags\RenameByTags\obj\Debug\RenameByTags.pdb
+D:\Profile\Desktop\CSharp\RenameByTags\RenameByTags\obj\Debug\RenameByTags.csprojAssemblyReference.cache
+D:\Profile\Desktop\CSharp\RenameByTags\RenameByTags\obj\Debug\RenameByTags.csproj.CoreCompileInputs.cache
+D:\Profile\Desktop\CSharp\RenameByTags\RenameByTags\obj\Debug\RenameByTags.exe
+D:\Profile\Desktop\CSharp\RenameByTags\RenameByTags\obj\Debug\RenameByTags.pdb
+D:\Profile\Desktop\CSharp\RenameByTags\RenameByTags\bin\Debug\RenameByTags.exe.config
+D:\Profile\Desktop\CSharp\RenameByTags\RenameByTags\bin\Debug\RenameByTags.exe
+D:\Profile\Desktop\CSharp\RenameByTags\RenameByTags\bin\Debug\RenameByTags.pdb
+D:\Profile\Desktop\CSharp\RenameByTags\RenameByTags\bin\Debug\policy.2.0.taglib-sharp.dll
+D:\Profile\Desktop\CSharp\RenameByTags\RenameByTags\bin\Debug\taglib-sharp.dll
+D:\Profile\Desktop\CSharp\RenameByTags\RenameByTags\bin\Debug\policy.2.0.taglib-sharp.config
+D:\Profile\Desktop\CSharp\RenameByTags\RenameByTags\obj\Debug\RenameByTags.csproj.CopyComplete
