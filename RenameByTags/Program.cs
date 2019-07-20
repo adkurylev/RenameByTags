@@ -7,7 +7,7 @@ namespace RenameByTagsMP3
 {
     class Program
     {
-        static string GetUserAnswer(string messageToUser)
+        static bool GetUserAnswer(string messageToUser)
         {
             string res;
 
@@ -18,7 +18,7 @@ namespace RenameByTagsMP3
             }
             while ((res != "y") && (res != "yes") && (res != "n") && (res != "no"));
 
-            return res;
+            return ((res == "y") || (res == "yes"));
         }
 
         static IEnumerable<string> GetSubdirectories(string currentDirectory)
@@ -39,20 +39,22 @@ namespace RenameByTagsMP3
         static void Main(string[] args)
         {
             //TODO: если в тэгах указан альбом, а рядом с файлом лежит картинка с 
-            //названием альбома, вставить картинку в тэги
+            //названием альбома, вставить картинку в тэги.
+            //Группировка в папки по артистам.
 
-            string userAnswer = GetUserAnswer("Хотите также переименовать файлы в подкаталогах?\ny/n");
+            bool userAnswer = GetUserAnswer("Хотите также переименовать файлы в подкаталогах?\ny/n");
 
             IEnumerable<string> directories = new List<string>() { Directory.GetCurrentDirectory() };
 
             //Если пользователь хочет переименовать файлы в подкаталогах и вводит "yes", переменной directories 
             //присваивается коллекция, состоящая из текущего каталога и его подкаталогов,
             //с помощью метода Concat добавляется текущий каталог.
-            //Иначе, переменная directories получает значение только текущего каталога.
-            if (userAnswer == "y" || userAnswer == "yes")
+            if (userAnswer)
             {
                 directories = GetSubdirectories(Directory.GetCurrentDirectory()).Concat(directories);
             }
+
+            userAnswer = GetUserAnswer("Хотите сгруппировать файлы в папки по артистам?\ny/n");
 
             foreach (var dir in directories)
             {
@@ -86,7 +88,7 @@ namespace RenameByTagsMP3
                     {
                         File.Move(file, path);
                     }
-                    catch (System.Exception)
+                    catch
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.Write("Переименуйте верхний файл вручную.");
