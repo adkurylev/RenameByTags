@@ -1,44 +1,65 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System;
 
 namespace RenameByTagsMP3
 {
     class Program
     {
+        static string GetUserAnswer(string messageToUser)
+        {
+            string res;
+
+            do
+            {
+                Console.WriteLine(messageToUser);
+                res = Console.ReadLine().ToLower();
+            }
+            while ((res != "y") && (res != "yes") && (res != "n") && (res != "no"));
+
+            return res;
+        }
+
+        static IEnumerable<string> GetSubdirectories(string currentDirectory)
+        {
+            IEnumerable<string> directories = Directory.EnumerateDirectories(currentDirectory);
+
+            if(directories != null)
+            {
+                foreach (var dir in directories)
+                {
+                    directories = directories.Concat(GetSubdirectories(dir));
+                }
+            }
+
+            return directories;
+        }
+
         static void Main(string[] args)
         {
-            System.Console.WriteLine("Хотите также переименовать файлы в подкаталогах?\nY/N");
-            string userAnswer = System.Console.ReadLine();
+            //TODO: если в тэгах указан альбом, а рядом с файлом лежит картинка с 
+            //названием альбома, вставить картинку в тэги
 
-            IEnumerable<string> directories = null;
+            string userAnswer = GetUserAnswer("Хотите также переименовать файлы в подкаталогах?\ny/n");
 
-            //Если пользователь хочет переименовать файлы в подкаталогах и вводит "yes", переменной directories присваивается коллекция, состоящая из текущего каталога и его подкаталогов,
+            IEnumerable<string> directories = new List<string>() { Directory.GetCurrentDirectory() };
+
+            //Если пользователь хочет переименовать файлы в подкаталогах и вводит "yes", переменной directories 
+            //присваивается коллекция, состоящая из текущего каталога и его подкаталогов,
             //с помощью метода Concat добавляется текущий каталог.
             //Иначе, переменная directories получает значение только текущего каталога.
-            if (userAnswer.ToLower() == "y" || userAnswer.ToLower() == "yes")
+            if (userAnswer == "y" || userAnswer == "yes")
             {
-                directories = Directory.EnumerateDirectories(Directory.GetCurrentDirectory()).Concat(new List<string>() { Directory.GetCurrentDirectory() });
-            }
-            else
-            {
-                if (userAnswer.ToLower() == "n" || userAnswer.ToLower() == "no")
-                {
-                    directories = new List<string>() { Directory.GetCurrentDirectory() };
-                }
-                else
-                {
-                    System.Console.WriteLine("Введено неверное значение.");
-                    return;
-                }
+                directories = GetSubdirectories(Directory.GetCurrentDirectory()).Concat(directories);
             }
 
             foreach (var dir in directories)
             {
                 //Вывод в консоль название каталога
-                System.Console.ForegroundColor = System.ConsoleColor.Blue;
-                System.Console.WriteLine(dir);
-                System.Console.ForegroundColor = System.ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine(dir);
+                Console.ForegroundColor = ConsoleColor.White;
 
                 //Получение файлов с расширением .mp3
                 IEnumerable<string> files = Directory.EnumerateFiles(dir).Where(x => Path.GetExtension(x) == ".mp3");
@@ -59,7 +80,7 @@ namespace RenameByTagsMP3
 
                     name = $"{artist} - {title}.mp3";
                     path = $"{dir}\\{name}";
-                    System.Console.WriteLine(path);
+                    Console.WriteLine(path);
                     //Если метаданные файла содержат запрещенные символы, на консоль выводится соответствующее сообщение.
                     try
                     {
@@ -67,16 +88,16 @@ namespace RenameByTagsMP3
                     }
                     catch (System.Exception)
                     {
-                        System.Console.ForegroundColor = System.ConsoleColor.Red;
-                        System.Console.Write("Переименуйте верхний файл вручную.");
-                        System.Console.ForegroundColor = System.ConsoleColor.White;
-                        System.Console.ReadLine();
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.Write("Переименуйте верхний файл вручную.");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.ReadLine();
                     }
                 }
-                System.Console.WriteLine();
+                Console.WriteLine();
             }
 
-            System.Console.ReadLine();
+            Console.ReadLine();
         }
     }
 }
